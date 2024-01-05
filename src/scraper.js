@@ -20,6 +20,7 @@ const getTimes = async () => {
       'script[type="text/javascript"]:contains("TagTimesObject")',
     ).html();
 
+    const parasha = $('div.yeshiva-banner img[itemprop="image"]').attr('alt') ?? "Parasha not found";
 
     const regex = /var\s+TagTimesObject\s+=\s+{([\s\S]*?)\s+};/;
 
@@ -28,7 +29,7 @@ const getTimes = async () => {
     if (match) {
       const tagTimesObjectScript = `${match[0]}\n\rmodule.export = { TagTimesObject };`;
 
-      //YOSSI, eval IS UNSAFE!!! NEVER USE IT IN REAL JS PROJECTS!
+      //eval IS UNSAFE!!! NEVER USE IT IN REAL JS PROJECTS!
       const tagTimes = eval(tagTimesObjectScript).TagTimesObject.TagsTimes;
 
       return `${tagTimes[CITIES.Jerusalem][0]}\n\r${
@@ -37,7 +38,7 @@ const getTimes = async () => {
         tagTimes[CITIES.BeerSheba][0]
       }\n\r\n\r${tagTimes[CITIES.Jerusalem][1]}\n\r${
         tagTimes[CITIES.TelAviv][1]
-      }\n\r${tagTimes[CITIES.Haifa][1]}\n\r${tagTimes[CITIES.BeerSheba][1]}`;
+      }\n\r${tagTimes[CITIES.Haifa][1]}\n\r${tagTimes[CITIES.BeerSheba][1]}\n\r${parasha}`;
     } else {
       console.error("TagTimesObject not found in the script.");
       return "";
