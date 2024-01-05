@@ -1,0 +1,17 @@
+{
+  "name": "ShabbatScrapper",
+  "version": "1.0.0",
+  "description": "Helper for yeshiva.org to get some shabbat times for major cities in Israel",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js"
+  },
+  "author": "Aharon Zilberman",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.5.1",
+    "cheerio": "^1.0.0-rc.12",
+    "express": "^4.18.2",
+    "prettier": "^3.0.3"
+  }
+}
